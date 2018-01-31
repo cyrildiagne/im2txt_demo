@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+// The greeting service definition.
+service Im2Txt {
+  // Sends a greeting
+  rpc Run (Im2TxtRequest) returns (Im2TxtReply) {}
+}
+
+// The request message containing the user's name.
+message Im2TxtRequest {
+  bytes image = 1;
+}
+
+// The response message containing the greetings
+message Im2TxtReply {
+  string text = 1;
+}

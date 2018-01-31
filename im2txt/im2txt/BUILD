@@ -43,6 +43,12 @@ py_library(
     ],
 )
 
+py_library(
+    name = "im2txt_pb2",
+    srcs = ["im2txt_pb2.py", "im2txt_pb2_grpc.py"],
+    srcs_version = "PY2AND3",
+)
+
 py_test(
     name = "show_and_tell_model_test",
     size = "large",
@@ -90,6 +96,19 @@ py_binary(
     deps = [
         ":configuration",
         ":inference_wrapper",
+        "//im2txt/inference_utils:caption_generator",
+        "//im2txt/inference_utils:vocabulary",
+    ],
+)
+
+py_binary(
+    name = "run_inference_service",
+    srcs = ["run_inference_service.py"],
+    srcs_version = "PY2AND3",
+    deps = [
+        ":configuration",
+        ":inference_wrapper",
+        ":im2txt_pb2",
         "//im2txt/inference_utils:caption_generator",
         "//im2txt/inference_utils:vocabulary",
     ],
